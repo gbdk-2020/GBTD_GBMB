@@ -1,0 +1,46 @@
+package hmainlib;
+
+{$R *.RES}
+{$R 'Fm.dcr'}
+{$R 'Picbtn.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Har''s main Lib'}
+{$DESIGNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl50,
+  vclx50;
+
+contains
+  Mrulist in 'Mrulist.pas',
+  mainlib in 'mainlib.pas',
+  ShadowCanvas in 'ShadowCanvas.pas',
+//  Fm,
+  Picbtn in 'Picbtn.pas',
+  Impstringgrid in 'Impstringgrid.pas',
+  AppMessage in 'AppMessage.pas',
+  AppMem in 'AppMem.pas',
+  Expbtn in 'Expbtn.pas';
+
+end.

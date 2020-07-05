@@ -1,8 +1,0 @@
-//SUPPRESSIONPROJ:Gbtd
-//VERSION:5.00
-//ENABLE:No
-!include DELPHI.SUP
-!include MFC.SUP
-
-ignore failure GDI32.DLL:SetPixel in module EXE
-ignore failure GDI32.DLL:SetPixel in module EXE

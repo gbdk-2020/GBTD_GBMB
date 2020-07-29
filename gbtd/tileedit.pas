@@ -633,21 +633,21 @@ begin
   case CurTileSize of
     gbts8x8 :
       begin
-        GrdPixel.PixelSize := 24;
-        LstTiles.TileCount := 13;
+        GrdPixel.PixelSize := 32;
+        LstTiles.TileCount := 16;
 
         if Simple1.Checked then
         begin
           ShwOne.Top := 88;
-          ShwOne.Left := 236;
+          ShwOne.Left := 300;
         end
         else
         begin
           ShwOne.Top := 40;
-          ShwOne.Left := 272;
+          ShwOne.Left := 336;
 
           ShwMult.Top := 100;
-          ShwMult.Left := 236;
+          ShwMult.Left := 300;
           ShwMult.TileCount := 4;
         end;
 
@@ -655,42 +655,42 @@ begin
 
     gbts8x16 :
       begin
-        GrdPixel.PixelSize := 24;
-        LstTiles.TileCount := 12;
+        GrdPixel.PixelSize := 32;
+        LstTiles.TileCount := 16;
 
         if Simple1.Checked then
         begin
           ShwOne.Top := 172;
-          ShwOne.Left := 256;
+          ShwOne.Left := 300;
         end
         else
         begin
           ShwOne.Top := 77;
-          ShwOne.Left := 292;
+          ShwOne.Left := 336;
 
           ShwMult.Top := 196;
-          ShwMult.Left := 256;
+          ShwMult.Left := 300;
           ShwMult.TileCount := 4;
         end;
       end;
 
     gbts16x16 :
       begin
-        GrdPixel.PixelSize := 14;
-        LstTiles.TileCount := 7;
+        GrdPixel.PixelSize := 32;   // 14
+        LstTiles.TileCount := 16;
 
         if Simple1.Checked then
         begin
           ShwOne.Top := 84;
-          ShwOne.Left := 282;
+          ShwOne.Left := 570;
         end
         else
         begin
           ShwOne.Top := 17;
-          ShwOne.Left := 330;
+          ShwOne.Left := 618;
 
           ShwMult.Top := 84;
-          ShwMult.Left := 282;
+          ShwMult.Left := 570;
           ShwMult.TileCount := 3;
         end;
       end;
@@ -698,21 +698,21 @@ begin
 
     gbts32x32 :
       begin
-        GrdPixel.PixelSize := 8;
-        LstTiles.TileCount := 4;
+        GrdPixel.PixelSize := 16;
+        LstTiles.TileCount := 8;
 
         if Simple1.Checked then
         begin
           ShwOne.Top := 86;
-          ShwOne.Left := 298;
+          ShwOne.Left := 570;
         end
         else
         begin
           ShwOne.Top := 5;
-          ShwOne.Left := 346;
+          ShwOne.Left := 618;
 
           ShwMult.Top := 105;
-          ShwMult.Left := 298;
+          ShwMult.Left := 570;
           ShwMult.TileCount := 2;
         end;
       end;
@@ -737,10 +737,7 @@ begin
     ShwMult.Visible := True;
     ShwMult.TileSize := CurTileSize;
     ShpMult.SetBounds(ShwMult.Left-1, ShwMult.Top-1, ShwMult.Width+2, ShwMult.Height+2);
-    if (CurTileSize = gbts32x32)  then
-      PnlPixel.Setbounds(0, PnlBtn.Top+PnlBtn.Height+2, ShpMult.Left + ShpMult.Width + 5, ShpMult.Top + ShpMult.Height + 4)
-    else
-      PnlPixel.Setbounds(0, PnlBtn.Top+PnlBtn.Height+2, ShpMult.Left + ShpMult.Width + 5, PnlEdit.Top + PnlEdit.Height + 4);
+    PnlPixel.Setbounds(0, PnlBtn.Top+PnlBtn.Height+2, ShpMult.Left + ShpMult.Width + 5, PnlEdit.Top + PnlEdit.Height + 4);
   end;
   ShpMult.Visible := ShwMult.Visible;
   LstTiles.TileSize := CurTileSize;
@@ -918,7 +915,7 @@ begin
   p := TileList.Items[i];
   UndoCtrl.LogTotal(p);
 
-  ClearBuf( @p.data, 32*32 );
+  FillChar(p^.data, sizeof(p^.data), 0);
 end;
 
 procedure TFrmTile.FlipHorizontal;
@@ -1021,10 +1018,10 @@ end;
 
 
 procedure TFrmTile.FormCreate(Sender: TObject);
-var i,j : integer;
-    p : PTileType;
-var s : string;
-    b : boolean;
+var i, j : integer;
+    p    : PTileType;
+    s    : string;
+    b    : boolean;
 begin
   GBColorController := TGBColorController.Create(self);
   TileExchanger := TGBTileExchanger.Create(Self, False);
@@ -1056,8 +1053,7 @@ begin
   CBC := SetClipboardViewer(Self.Handle);
 
 
-  with TileExport do
-  begin
+  with TileExport do begin
     TileID := 1;
     FileName[0] := char(0);
     FileType := 0;
@@ -1093,12 +1089,9 @@ begin
   end;
 
   TileList := TList.Create;
-  for i := 0 to 127 do
-  begin
-    New(p);
-    p.ColorSet[0] := 0;
-    p.ColorSet[1] := 0;
-    ClearBuf(p, 32*32);
+  for i := 0 to 127 do begin
+    p:= New(PTileType);
+    fillchar(p^, sizeof(p^), 0);
     TileList.Add(p);
   end;
 
@@ -1135,19 +1128,22 @@ begin
   Modified := False;
 
   (* Check for switches *)
-  for i := 1 to ParamCount do
-  begin
+  b:= false;
+  for i := 1 to ParamCount do begin
     s := ParamStr(i);
-    if (s[1] = '-') then
-    begin
-      MessageDlg('This switch is not supported by this version.', mtInformation, [mbOk], 0);
-      Halt;              (* ! dirty ! *)
-    end
+    if (s[1] = '-') then begin
+      MessageDlg('This switch is not supported by this version.', mtError, [mbOk], 0);
+      PostMessage(Application.Handle, WM_QUIT, 0, 0);
+    end else begin
+      if not b then begin
+         LoadFromGBR(s);
+         b:= true;
+      end else begin
+        MessageDlg('Only one file can be loaded.', mtError, [mbOk], 0);
+        PostMessage(Application.Handle, WM_QUIT, 0, 0);
+      end;
+    end;
   end;
-
-
-  if (ParamCount > 0) then
-    LoadFromGBR(ParamStr(1));
 
   UndoCtrl.ChangeTile(LstTiles.SelTile);
 

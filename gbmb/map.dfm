@@ -1,6 +1,6 @@
 object FrmMap: TFrmMap
-  Left = 77
-  Top = 185
+  Left = 759
+  Top = 336
   Width = 605
   Height = 498
   HorzScrollBar.Visible = False
@@ -16,6 +16,7 @@ object FrmMap: TFrmMap
   KeyPreview = True
   Menu = MainMenu1
   OldCreateOrder = True
+  Scaled = False
   ShowHint = True
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate

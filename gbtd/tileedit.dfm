@@ -17,6 +17,7 @@ object FrmTile: TFrmTile
   Menu = MainMenu1
   OldCreateOrder = True
   Position = poDefaultPosOnly
+  Scaled = False
   ShowHint = True
   OnClose = FormClose
   OnCreate = FormCreate

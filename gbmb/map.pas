@@ -206,7 +206,7 @@ type
 
     procedure InfoPanelKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 
-    procedure Resize;
+    procedure Resize; override;
     procedure ChangeZoom( i : integer);
 
     function SaveToGBM(AutoSave : boolean ): boolean;
@@ -405,9 +405,9 @@ procedure TFrmMap.Resize;
 var i,x,y : integer;
 begin
   DetermineTileSize(LstTiles.TileSize, x, y);
-  LstTiles.Left := Width - LstTiles.Width - 7;
+  LstTiles.Left := Width - LstTiles.Width - GetSystemMetrics( SM_CXVSCROLL );
   PnlMain.Setbounds( 0, 34, LstTiles.Left-3,
-                     Height - (GetSystemMetrics( SM_CYCAPTION ) + GetSystemMetrics( SM_CYMENU ) + 42) );
+                     Height - (GetSystemMetrics( SM_CYCAPTION ) + GetSystemMetrics( SM_CYMENU ) + 48) );
   LstTiles.TileCount := (PnlMain.Height div ((y+1) * 2));
 
   if (PnlInfo.Visible) then

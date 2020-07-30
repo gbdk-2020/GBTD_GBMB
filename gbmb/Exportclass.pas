@@ -698,9 +698,9 @@ begin
     s := Trim(Options.SectionName);
 
   if (Options.Bank+Offset = 0) then
-    writeln(F, ' SECTION "' + s + '", HOME' )
+    writeln(F, ' SECTION "' + s + '", ROM0' )
   else
-    writeln(F, ' SECTION "' + s + '", DATA, BANK[' + IntToStr(Options.Bank+Offset) + ']' );
+    writeln(F, ' SECTION "' + s + '", ROMX, BANK[' + IntToStr(Options.Bank+Offset) + ']' );
 end;
 
 

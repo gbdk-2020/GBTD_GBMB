@@ -8,7 +8,7 @@ type
   TAppMessage = class
    private
     { Private declarations }
-    FMsg        : integer;
+    FMsg        : cardinal;
     FMaster     : TControl;
     FOldHandler : TWndMethod;
 

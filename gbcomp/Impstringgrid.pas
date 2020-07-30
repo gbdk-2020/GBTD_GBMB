@@ -350,7 +350,7 @@ var
   I, Left: Integer;
 begin
   I := ColorToRGB(ACanvas.Brush.Color);
-  if GetNearestColor(ACanvas.Handle, I) = I then
+  if (GetNearestColor(ACanvas.Handle, I) = COLORREF(I)) then
   begin                       { Use ExtTextOut for solid colors }
     case Alignment of
       taLeftJustify:

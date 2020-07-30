@@ -94,8 +94,6 @@ type
 
   protected
     { Protected declarations }
-    constructor Create(AOwner : TComponent); override;
-    destructor Destroy; override;
     procedure Loaded; override;
 
     procedure MouseDown(Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;
@@ -107,6 +105,9 @@ type
     procedure CalcScreen( w, h : integer);
 
   public
+    constructor Create(AOwner : TComponent); override;
+    destructor Destroy; override;
+
     { Public declarations }
     property TileData : TList read FTileData write SetTileData;
     property MapData : TGBMapType read FMapData write SetMapData;
@@ -755,8 +756,8 @@ var k,l : integer;
     wdth, hght : integer;
     MapWidth : integer;
 
-    HorFlip,VerFlip : integer;
-    HorBase,VerBase : integer;
+//    HorFlip,VerFlip : integer;
+//    HorBase,VerBase : integer;
     x,y : integer;
 
 begin

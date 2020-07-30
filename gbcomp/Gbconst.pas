@@ -622,7 +622,7 @@ begin
 end;
 
 procedure TGBMapType.SetPropDefLoc(Loc : integer; const Def : RMapPropDef);
-var i : integer;
+//var i : integer;
 begin
   if (Def.Loc = -1) then
   begin
@@ -701,7 +701,7 @@ begin
     for i := indx to PROPCNT-2 do FPropDef[i] := FPropDef[i+1];
 
     (* move initial values *)
-    c := FPropInitVal[i];
+    c := FPropInitVal[PROPCNT-1]; //c := FPropInitVal[i];
     for i := indx to PROPCNT-2 do FPropInitVal[i] := FPropInitVal[i+1];
     FPropInitVal[PROPCNT-1] := nil;
     FreeMem(c);
@@ -721,7 +721,8 @@ end;
 
 
 procedure TGBMapType.ResizeInitVal( Indx : integer; cnt : integer; Preserve : boolean);
-var p,q : PGBMapPropInitVal;
+var //p   : PGBMapPropInitVal;
+    q   : PGBMapPropInitVal;
     i,j : integer;
 begin
   q := FPropInitVal[Indx];

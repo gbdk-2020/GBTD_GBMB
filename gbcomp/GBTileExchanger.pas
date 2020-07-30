@@ -177,7 +177,7 @@ begin
 end;
 
 procedure TGBTileExchanger.ExchangeToTile( TileNr : integer);
-var i : integer;
+var //i : integer;
     b : PByteMem;
     p : PByteMem;
 begin
@@ -197,7 +197,7 @@ begin
 end;
 
 procedure TGBTileExchanger.TileToExchange( TileNr : integer);
-var i : integer;
+var //i : integer;
     p : PByteMem;
     b : PByteMem;
 
@@ -301,7 +301,8 @@ begin
 end;
 
 procedure TGBTileExchanger.UploadList;
-var i,j : integer;
+var //i : integer;
+    j : integer;
     p : PByteMem;
     b : PByteMem;
 begin

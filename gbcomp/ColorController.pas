@@ -24,7 +24,7 @@ const MODECNT = 4;
       FShadowSelColorSets : array[0..MODECNT] of TGBPropColorSets;//TGBColorSets;
 
       FColorSetIndex : integer;
-      Freezed        : boolean;
+//      Freezed        : boolean;
 
 //      procedure SetColorMode( i : TGBColorMode);
       procedure SetPalette( i : TGBPaletteType);
@@ -189,7 +189,7 @@ end;
 function DetermineColor( AClrForm : TCustomForm; c : TColor ): TColor;
 begin
   Result := GetNearestColor( AClrForm.Canvas.Handle, c );
-  if (Result =  CLR_INVALID) then Result := c;
+  if (DWORD(Result) =  CLR_INVALID) then Result := c;
 end;
 
 
@@ -280,7 +280,8 @@ var i,j : integer;
 
   procedure TransColorSets ( var inS, outS : TGBColorSets);
 //  const Base : TGBPropColorSets; Res : PGBPropColorSets);
-  var i,j,k : integer;
+  var i,j: integer;
+//      k : integer;
   begin
       for i := 0 to 7 do
         for j := 0 to 3 do

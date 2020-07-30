@@ -510,9 +510,9 @@ begin
     (* insert section *)
     write(F, ' SECTION "' + Trim(SectionName) + '", ' );
     if (Bank = 0) then
-      writeln(F, 'HOME')
+      writeln(F, 'ROM0')
     else
-      writeln(F, 'DATA, BANK[' + IntToStr(Bank) +']' );
+      writeln(F, 'ROMX, BANK[' + IntToStr(Bank) +']' );
   end;
 end;
 

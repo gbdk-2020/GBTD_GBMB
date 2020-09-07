@@ -1,4 +1,7 @@
-void decompress(const unsigned char * sour, unsigned char * dest) __naked {
+// GB-Compress decompressor
+// Compatible with GBTD
+
+void gb_decompress(const unsigned char * sour, unsigned char * dest) __naked {
     sour; dest;
 __asm   
         lda     hl,5(SP)

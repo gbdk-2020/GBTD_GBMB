@@ -242,23 +242,23 @@ begin
     end;
 
     (* Draw gridlines *)
-    if FGridLines then
-    begin
+    if FGridLines then with Image.Canvas do begin
       (* draw horizontal lines *)
       for i := 1 to FYLen-1 do
-        with Image.Canvas do
         begin
+          if (i mod 8 = 0) then Pen.Color:= clBlack else Pen.Color:= clLtGray;
           MoveTo(i*FPixelSize,1);
           LineTo(i*FPixelSize, height-1);
         end;
 
       (* draw vertical lines *)
       for i := 1 to FYLen-1 do
-        with Image.Canvas do
         begin
+          if (i mod 8 = 0) then Pen.Color:= clBlack else Pen.Color:= clLtGray;
           MoveTo(1,i*FPixelSize);
           LineTo(Width-1, i*FPixelSize);
         end;
+      Pen.Color:= clBlack;
     end;
 
     (* Draw nibble markers *)

@@ -199,15 +199,27 @@ begin
 end;
 }
 
-function NormalizeClipColor(cIn : TColor): TColor;
-var i : integer;
+function RgbToGray(RGBColor : TColor) : TColor;
+var
+  Gray : byte;
 begin
-  i := ((integer(cIn) and $F0) SHR 4);
-  case i of
-    $0 : Result := clBlack;
-    $8 : Result := clDkGray;
-    $C : Result := clLtGray;
-    else Result := clWhite;
+  Gray := Round((0.30 * GetRValue(RGBColor)) +
+                (0.59 * GetGValue(RGBColor)) +
+                (0.11 * GetBValue(RGBColor )));
+  Result := RGB(Gray, Gray, Gray);
+end;
+
+function NormalizeClipColor(cIn : TColor): TColor;
+begin
+  if ((cIn = clBlack) or (cIn = clDkGray) or (cIn = clLtGray) or (cIn = clWhite)) then begin
+    Result:= cIn;
+  end else begin
+    case (byte(RgbToGray(cIn)) SHR 6) of
+      0 : Result := clBlack;
+      1 : Result := clDkGray;
+      2 : Result := clLtGray;
+      3 : Result := clWhite;
+    end;
   end;
 end;
 

@@ -215,10 +215,10 @@ begin
     Result:= cIn;
   end else begin
     case (byte(RgbToGray(cIn)) SHR 6) of
-      0 : Result := clBlack;
-      1 : Result := clDkGray;
-      2 : Result := clLtGray;
-      3 : Result := clWhite;
+      0  : Result := clBlack;
+      1  : Result := clDkGray;
+      2  : Result := clLtGray;
+      else Result := clWhite;
     end;
   end;
 end;

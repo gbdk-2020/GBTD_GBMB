@@ -14,15 +14,15 @@ type
 
   protected
     { protected declarations }
-    procedure WriteHeader( const Info : TGBOTileExport; x,y : integer ); override;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); override;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteEnd( const Info : TGBOTileExport ); override;
-    procedure WriteConstant( lbl : string; Value : string; comment : string ); override;
+    procedure WriteHeader(const Info : TGBOTileExport; x,y : integer ); override;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean ); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string ); override;
+    procedure WriteEnd(const Info : TGBOTileExport ); override;
+    procedure WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string ); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string ); override;
     destructor Destroy; override;
   end;
 
@@ -36,16 +36,16 @@ type
 
   protected
     { protected declarations }
-    procedure WriteHeader( const Info : TGBOTileExport; x,y : integer ); override;
-    procedure WriteInit( const Info : TGBOTileExport ); override;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); override;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteData( buf : TPByteArray; size : integer); override;
-    procedure WriteEnd( const Info : TGBOTileExport ); override;
+    procedure WriteHeader(const Info : TGBOTileExport; x,y : integer ); override;
+    procedure WriteInit(const Info : TGBOTileExport ); override;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean ); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string ); override;
+    procedure WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer); override;
+    procedure WriteEnd(const Info : TGBOTileExport ); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string); override;
     destructor Destroy; override;
   end;
 
@@ -58,16 +58,16 @@ type
 
   protected
     { protected declarations }
-    procedure WriteHeader( const Info : TGBOTileExport; x,y : integer ); override;
-    procedure WriteInit( const Info : TGBOTileExport ); override;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); override;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteData( buf : TPByteArray; size : integer); override;
-    procedure WriteEnd( const Info : TGBOTileExport ); override;
+    procedure WriteHeader(const Info : TGBOTileExport; x,y : integer ); override;
+    procedure WriteInit(const Info : TGBOTileExport ); override;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean ); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string ); override;
+    procedure WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer); override;
+    procedure WriteEnd(const Info : TGBOTileExport ); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string ); override;
     destructor Destroy; override;
   end;
 
@@ -80,15 +80,15 @@ type
 
   protected
     { protected declarations }
-    procedure WriteHeader( const Info : TGBOTileExport; x,y : integer ); override;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); override;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteEnd( const Info : TGBOTileExport ); override;
-    procedure WriteConstant( lbl : string; Value : string; comment : string ); override;
+    procedure WriteHeader(const Info : TGBOTileExport; x,y : integer ); override;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean ); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string ); override;
+    procedure WriteEnd(const Info : TGBOTileExport ); override;
+    procedure WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string ); override;
     destructor Destroy; override;
   end;
 
@@ -105,15 +105,15 @@ type
 
   protected
     { protected declarations }
-    procedure WriteInit( const Info : TGBOTileExport ); override;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); override;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteData( buf : TPByteArray; size : integer); override;
-    procedure WriteEnd( const Info : TGBOTileExport ); override;
+    procedure WriteInit(const Info : TGBOTileExport); override;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string); override;
+    procedure WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer); override;
+    procedure WriteEnd(const Info : TGBOTileExport); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string ); override;
     destructor Destroy; override;
   end;
 
@@ -126,16 +126,16 @@ type
 
   protected
     { protected declarations }
-    procedure WriteHeader( const Info : TGBOTileExport; x,y : integer ); override;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); override;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteData( buf : TPByteArray; size : integer); override;
-    procedure WriteEnd( const Info : TGBOTileExport ); override;
-    procedure WriteConstant( lbl : string; Value : string; comment : string ); override;
+    procedure WriteHeader(const Info : TGBOTileExport; x,y : integer ); override;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean ); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string ); override;
+    procedure WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer); override;
+    procedure WriteEnd(const Info : TGBOTileExport ); override;
+    procedure WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string ); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string ); override;
     destructor Destroy; override;
   end;
 
@@ -148,12 +148,12 @@ type
 
   protected
     { protected declarations }
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteData( buf : TPByteArray; size : integer); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string ); override;
+    procedure WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string); override;
     destructor Destroy; override;
   end;
 
@@ -165,15 +165,15 @@ type
     FName : string;
   protected
     { protected declarations }
-    procedure WriteHeader( const Info : TGBOTileExport; x,y : integer ); override;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); override;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteData( buf : TPByteArray; size : integer); override;
-    procedure WriteEnd( const Info : TGBOTileExport ); override;
+    procedure WriteHeader(const Info : TGBOTileExport; x,y : integer ); override;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean ); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string ); override;
+    procedure WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer); override;
+    procedure WriteEnd(const Info : TGBOTileExport ); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string ); override;
     destructor Destroy; override;
   end;
 
@@ -186,15 +186,15 @@ type
     IncludeName : string;
   protected
     { protected declarations }
-    procedure WriteHeader( const Info : TGBOTileExport; x,y : integer ); override;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); override;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); override;
-    procedure WriteEnd( const Info : TGBOTileExport ); override;
-    procedure WriteConstant( lbl : string; Value : string; comment : string ); override;
+    procedure WriteHeader(const Info : TGBOTileExport; x,y : integer ); override;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean ); override;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string ); override;
+    procedure WriteEnd(const Info : TGBOTileExport ); override;
+    procedure WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string ); override;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); override;
+    constructor Create(const fn : string ); override;
     destructor Destroy; override;
   end;
 
@@ -283,7 +283,7 @@ end;
 (*************************************************)
 
 
-constructor TGBTDBinExport.Create( fn : string );
+constructor TGBTDBinExport.Create(const fn : string );
 begin
   FStrm := TFileStream.Create(fn, fmCreate);
 end;
@@ -297,13 +297,13 @@ begin
 end;
 
 
-procedure TGBTDBinExport.WriteData( buf : TPByteArray; size : integer);
+procedure TGBTDBinExport.WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer);
 begin
   FStrm.Write(buf^, size);
 end;
 
 
-procedure TGBTDBinExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDBinExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   case CType of
     gbctByte  : FStrm.Write( cnt, 1 );
@@ -328,7 +328,7 @@ end;
 
 
 
-constructor TGBTDRGBDSObjExport.Create( fn : string );
+constructor TGBTDRGBDSObjExport.Create(const fn : string );
 begin
   FStrm := TFileStream.Create(fn, fmCreate);
   Lst := TList.Create;
@@ -421,7 +421,7 @@ end;
 
 
 
-procedure TGBTDRGBDSObjExport.WriteData( buf : TPByteArray; size : integer);
+procedure TGBTDRGBDSObjExport.WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer);
 var i : integer;
 begin
   (* pump over to internal buffer *)
@@ -433,7 +433,7 @@ begin
 end;
 
 
-procedure TGBTDRGBDSObjExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDRGBDSObjExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   case CType of
     gbctByte  :
@@ -452,7 +452,7 @@ begin
 end;
 
 
-procedure TGBTDRGBDSObjExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDRGBDSObjExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 var p : ^TGBTDRGBDSLabelType;
 begin
 
@@ -475,7 +475,7 @@ end;
 (*                                               *)
 (*************************************************)
 
-constructor TGBTDRGBDSAsmExport.Create( fn : string );
+constructor TGBTDRGBDSAsmExport.Create(const fn : string );
 begin
   AssignFile(F, fn);
   Rewrite(F);
@@ -517,7 +517,7 @@ begin
 end;
 
 
-procedure TGBTDRGBDSAsmExport.WriteEnd( const Info : TGBOTileExport );
+procedure TGBTDRGBDSAsmExport.WriteEnd(const Info : TGBOTileExport );
 begin
   (* EOF marker *)
   writeln(F);
@@ -525,7 +525,7 @@ begin
 end;
 
 
-procedure TGBTDRGBDSAsmExport.WriteData( buf : TPByteArray; size : integer);
+procedure TGBTDRGBDSAsmExport.WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer);
 var i,j : integer;
 begin
   i := 0;
@@ -544,7 +544,7 @@ begin
 end;
 
 
-procedure TGBTDRGBDSAsmExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDRGBDSAsmExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   case CType of
     gbctByte  : writeln(F, 'DB ' + IntToStr(cnt));
@@ -553,7 +553,7 @@ begin
 end;
 
 
-procedure TGBTDRGBDSAsmExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDRGBDSAsmExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 begin
   if (comment <> '') then
   begin
@@ -573,7 +573,7 @@ end;
 (*                                               *)
 (*************************************************)
 
-constructor TGBTDRGBDSIncExport.Create( fn : string );
+constructor TGBTDRGBDSIncExport.Create(const fn : string );
 begin
   AssignFile(F, fn);
   Rewrite(F);
@@ -610,13 +610,13 @@ begin
 end;
 
 
-procedure TGBTDRGBDSIncExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDRGBDSIncExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   if (CType = gbctEqu) then writeln(F, lbl + 'Len EQU ' + IntToStr(cnt));
 end;
 
 
-procedure TGBTDRGBDSIncExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDRGBDSIncExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 begin
   if (comment <> '') then
   begin
@@ -627,7 +627,7 @@ begin
 end;
 
 
-procedure TGBTDRGBDSIncExport.WriteConstant( lbl : string; Value : string; comment : string );
+procedure TGBTDRGBDSIncExport.WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string );
 begin
   if (comment <> '') then
   begin
@@ -646,7 +646,7 @@ end;
 (*                                               *)
 (*************************************************)
 
-constructor TGBTDGBDKCExport.Create( fn : string );
+constructor TGBTDGBDKCExport.Create(const fn : string );
 begin
   AssignFile(F, fn);
   Rewrite(F);
@@ -688,7 +688,7 @@ begin
 end;
 
 
-procedure TGBTDGBDKCExport.WriteData( buf : TPByteArray; size : integer);
+procedure TGBTDGBDKCExport.WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer);
 var i,j : integer;
 begin
   i := 0;
@@ -708,7 +708,7 @@ begin
 end;
 
 
-procedure TGBTDGBDKCExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDGBDKCExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   case CType of
     gbctByte  : writeln(F, '  ' + IntToStr(cnt) + ',');
@@ -717,7 +717,7 @@ begin
 end;
 
 
-procedure TGBTDGBDKCExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDGBDKCExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 begin
   if not MainLabel then                (* C does not support main labels *)
   begin
@@ -725,6 +725,7 @@ begin
     begin
       writeln(F, '/* ' + comment + ' */');
     end;
+    if (Info.Bank <> 0) then writeln(F, format('const void __at(%d) __bank_%s;', [Info.Bank, lbl]));
     writeln(F, 'const unsigned char ' + lbl + '[] =');
     writeln(F, '{' );
   end;
@@ -740,7 +741,7 @@ end;
 (*                                               *)
 (*************************************************)
 
-constructor TGBTDGBDKHExport.Create( fn : string );
+constructor TGBTDGBDKHExport.Create(const fn : string );
 begin
   AssignFile(F, fn);
   Rewrite(F);
@@ -791,13 +792,13 @@ begin
 end;
 
 
-procedure TGBTDGBDKHExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDGBDKHExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   if (CType = gbctEQU) then writeln(F, '#define ' + lbl + 'Len ' + IntToStr(cnt) );
 end;
 
 
-procedure TGBTDGBDKHExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDGBDKHExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 begin
   if not MainLabel then                (* C does not support main labels *)
   begin
@@ -805,11 +806,13 @@ begin
     begin
       writeln(F, '/* ' + comment + ' */');
     end;
+
+    if (Info.Bank <> 0) then writeln(F, 'extern const void __bank_' + lbl + ';');
     writeln(F, 'extern const unsigned char ' + lbl + '[];');
   end;
 end;
 
-procedure TGBTDGBDKHExport.WriteConstant( lbl : string; Value : string; comment : string );
+procedure TGBTDGBDKHExport.WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string );
 begin
   if (comment <> '') then
   begin
@@ -829,7 +832,7 @@ end;
 (*                                               *)
 (*************************************************)
 
-constructor TGBTDTASMAsmExport.Create( fn : string );
+constructor TGBTDTASMAsmExport.Create(const fn : string );
 begin
   AssignFile(F, fn);
   Rewrite(F);
@@ -869,7 +872,7 @@ begin
 end;
 
 
-procedure TGBTDTASMAsmExport.WriteData( buf : TPByteArray; size : integer);
+procedure TGBTDTASMAsmExport.WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer);
 var i,j : integer;
 begin
   i := 0;
@@ -888,7 +891,7 @@ begin
 end;
 
 
-procedure TGBTDTASMAsmExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDTASMAsmExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   case CType of
     gbctByte  : writeln(F, '.Byte ' + IntToStr(cnt));
@@ -898,7 +901,7 @@ begin
 end;
 
 
-procedure TGBTDTASMAsmExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDTASMAsmExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 begin
   if (comment <> '') then
   begin
@@ -908,7 +911,7 @@ begin
   writeln(F, lbl + ':');
 end;
 
-procedure TGBTDTASMAsmExport.WriteConstant( lbl : string; Value : string; comment : string );
+procedure TGBTDTASMAsmExport.WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string );
 begin
   if (comment <> '') then
   begin
@@ -944,7 +947,7 @@ No string operations
 }
 
 
-constructor TGBTDISASAsmExport.Create( fn : string );
+constructor TGBTDISASAsmExport.Create(const fn : string );
 begin
   AssignFile(F, fn);
   Rewrite(F);
@@ -990,7 +993,7 @@ begin
 end;
 
 
-procedure TGBTDISASAsmExport.WriteData( buf : TPByteArray; size : integer);
+procedure TGBTDISASAsmExport.WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer);
 var i,j : integer;
 begin
   i := 0;
@@ -1009,7 +1012,7 @@ begin
 end;
 
 
-procedure TGBTDISASAsmExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDISASAsmExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   case CType of
     gbctByte  : writeln(F, ' DB ' + IntToStr(cnt));
@@ -1018,7 +1021,7 @@ begin
 end;
 
 
-procedure TGBTDISASAsmExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDISASAsmExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 begin
   if (comment <> '') then
   begin
@@ -1036,7 +1039,7 @@ end;
 (*                                               *)
 (*************************************************)
 
-constructor TGBTDISASIncExport.Create( fn : string );
+constructor TGBTDISASIncExport.Create(const fn : string );
 begin
   AssignFile(F, fn);
   Rewrite(F);
@@ -1052,7 +1055,7 @@ end;
 
 
 
-procedure TGBTDISASIncExport.WriteHeader( const Info : TGBOTileExport; x,y : integer );
+procedure TGBTDISASIncExport.WriteHeader(const Info : TGBOTileExport; x,y : integer );
 begin
   (* write specific header for ASM-files *)
   writeln(F, '; ' + UpperCase(ExtractFileName(FName)));
@@ -1065,7 +1068,7 @@ begin
 end;
 
 
-procedure TGBTDISASIncExport.WriteEnd( const Info : TGBOTileExport );
+procedure TGBTDISASIncExport.WriteEnd(const Info : TGBOTileExport );
 begin
   (* EOF marker *)
   writeln(F);
@@ -1073,13 +1076,13 @@ begin
 end;
 
 
-procedure TGBTDISASIncExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDISASIncExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   if (CType = gbctEqu) then writeln(F, lbl + 'Len EQU ' + IntToStr(cnt));
 end;
 
 
-procedure TGBTDISASIncExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDISASIncExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 begin
   if (comment <> '') then
   begin
@@ -1090,7 +1093,7 @@ begin
 end;
 
 
-procedure TGBTDISASIncExport.WriteConstant( lbl : string; Value : string; comment : string );
+procedure TGBTDISASIncExport.WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string );
 begin
   if (comment <> '') then
   begin

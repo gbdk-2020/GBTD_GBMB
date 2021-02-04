@@ -14,26 +14,26 @@ type
   TGBTDExport = class
   private
     { Private declarations }
-    function GetData( const Info : TGBOTileExport; const Tile : TileType; const buf : TPByteArray ): integer;
-    procedure PutCounter( const Info : TGBOTileExport; x,y : integer; size : integer; cnt : integer; lbl : string; Cnter : byte );
-    function ProcessData( const Info : TGBOTileExport; const buf : TPByteArray; size : integer ): integer;
-    procedure ExportPaletteIndexes(Info : TGBOTileExport; Lst : TList; GBType: integer );
-    function ConvertToMetaTiles( Info : TGBOTileExport; TileSize : TGBTileSize; Buf : TList;TileCnt : integer): TList;
+    function GetData(const Info : TGBOTileExport; const Tile : TileType; const buf : TPByteArray ): integer;
+    procedure PutCounter(const Info : TGBOTileExport; x,y : integer; size : integer; cnt : integer; lbl : string; Cnter : byte );
+    function ProcessData(const Info : TGBOTileExport; const buf : TPByteArray; size : integer ): integer;
+    procedure ExportPaletteIndexes(const Info : TGBOTileExport; Lst : TList; GBType: integer );
+    function ConvertToMetaTiles(const Info : TGBOTileExport; TileSize : TGBTileSize; Buf : TList;TileCnt : integer): TList;
 
   protected
     { protected declarations }
-    procedure WriteHeader( const Info : TGBOTileExport; x,y : integer ); virtual;
-    procedure WriteInit( const Info : TGBOTileExport ); virtual;
-    procedure WriteLabel( lbl : string; comment : string; MainLabel : boolean ); virtual;
-    procedure WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string ); virtual;
-    procedure WriteData( buf : TPByteArray; size : integer); virtual;
-    procedure WriteEnd( const Info : TGBOTileExport ); virtual;
-    procedure WriteConstant( lbl : string; Value : string; comment : string ); virtual;
+    procedure WriteHeader(const Info : TGBOTileExport; x,y : integer ); virtual;
+    procedure WriteInit(const Info : TGBOTileExport); virtual;
+    procedure WriteLabel(const Info : TGBOTileExport; const lbl: string; const comment: string; MainLabel : boolean ); virtual;
+    procedure WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl: string ); virtual;
+    procedure WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer); virtual;
+    procedure WriteEnd(const Info : TGBOTileExport ); virtual;
+    procedure WriteConstant(const Info : TGBOTileExport; const lbl: string; const Value: string; const comment: string ); virtual;
 
   public
     { Public declarations }
-    constructor Create( fn : string ); virtual; abstract;
-    function GBTDExport( Info : TGBOTileExport; TileSize : TGBTileSize; Lst : TList; const SGB, CGB  : TGBColorSets ): boolean;
+    constructor Create(const fn : string ); virtual; abstract;
+    function GBTDExport(const Info : TGBOTileExport; TileSize : TGBTileSize; Lst : TList; const SGB, CGB  : TGBColorSets ): boolean;
   end;
 
   function TileArrayDesc( Ta : boolean ): string;
@@ -147,7 +147,7 @@ begin
 end;
 
 
-procedure TGBTDExport.ExportPaletteIndexes(Info : TGBOTileExport; Lst : TList; GBType: integer );
+procedure TGBTDExport.ExportPaletteIndexes(const Info : TGBOTileExport; Lst : TList; GBType: integer );
 var sType : string;
     PalIndex : integer;
     ExType : integer;
@@ -179,19 +179,19 @@ begin
         1 :
           begin
             (* Constants *)
-            WriteConstant( LabelName + sType + IntToStr(Info.From),
+            WriteConstant( Info, LabelName + sType + IntToStr(Info.From),
                            IntToStr( TileType(Lst.Items[Info.From]^).ColorSet[PalIndex]),
                            sType + ' palette entries.');
 
             for i:= Info.From+1 to Info.Upto do
-              WriteConstant( LabelName + sType + IntToStr(i),
+              WriteConstant( Info, LabelName + sType + IntToStr(i),
                              IntToStr( TileType(Lst.Items[i]^).ColorSet[PalIndex]), '');
           end;
 
         2 :
           begin
             (* 2 bits *)
-            WriteLabel( LabelName + sType, sType + 'palette entries.', False);
+            WriteLabel( Info, LabelName + sType, sType + 'palette entries.', False);
 
             j := 0;
             l := 0;
@@ -217,14 +217,14 @@ begin
               Inc(j);
             end;
 
-            WriteData(buf,j);
+            WriteData(Info, buf, j);
 
           end;
 
        3 :
           begin
             (* 4 bits *)
-            WriteLabel( LabelName + sType, sType + 'palette entries.', False);
+            WriteLabel(Info, LabelName + sType, sType + 'palette entries.', False);
 
             j := 0;
             l := 0;
@@ -250,14 +250,14 @@ begin
               Inc(j);
             end;
 
-            WriteData(buf,j);
+            WriteData(Info, buf, j);
 
           end;
 
         4 :
           begin
             (* byte *)
-            WriteLabel( LabelName + sType, sType + 'palette entries.', False);
+            WriteLabel(Info, LabelName + sType, sType + 'palette entries.', False);
 
             j := 0;
             for i:= Info.From to Info.Upto do
@@ -265,7 +265,7 @@ begin
               buf[j] := TileType(Lst.Items[i]^).ColorSet[PalIndex];
               Inc(j);
             end;
-            WriteData(buf,j);
+            WriteData(Info, buf,j);
 
           end;
 
@@ -282,7 +282,7 @@ end;
 
 
 
-function TGBTDExport.ConvertToMetaTiles( Info : TGBOTileExport; TileSize : TGBTileSize; Buf : TList; TileCnt : integer): TList;
+function TGBTDExport.ConvertToMetaTiles(const Info : TGBOTileExport; TileSize : TGBTileSize; Buf : TList; TileCnt : integer): TList;
 type TLookupIndex = array[0..7] of word;
      TLookupArr   = array[0..MAXTILECNT-1] of TLookupIndex;
 
@@ -359,9 +359,9 @@ begin
   DetermineTileSize(TileSize, w, h);
   with Info do
   begin
-    Writelabel( LabelName + 'Index', 'Metatile index', False );
+    Writelabel(Info, LabelName + 'Index', 'Metatile index', False );
     PutCounter(Info, w, h, j, 1 + (Upto-From), LabelName + 'Index', MetaCounter );
-    writedata(@Meta, j );
+    writedata(Info, @Meta, j );
   end;
 
   (* return list *)
@@ -373,7 +373,7 @@ end;
 
 
 
-function TGBTDExport.GBTDExport( Info : TGBOTileExport; TileSize : TGBTileSize; Lst : TList; const SGB, CGB : TGBColorSets ): boolean;
+function TGBTDExport.GBTDExport(const Info : TGBOTileExport; TileSize : TGBTileSize; Lst : TList; const SGB, CGB : TGBColorSets ): boolean;
 var i,j,size : integer;
     x,y : integer;
     buf : TPByteArray;
@@ -391,7 +391,7 @@ var i,j,size : integer;
         (* Everything in one big bunch *)
 
         (* Main label *)
-        WriteLabel(Lbl, 'Start of tile array.', False);
+        WriteLabel(Info, Lbl, 'Start of tile array.', False);
 
         GetMem(buf, x * y * (1 +(iUpTo-iFrom)) );
         try
@@ -406,7 +406,7 @@ var i,j,size : integer;
           Size := ProcessData( Info, buf, Size );
 
           (* write data *)
-          WriteData(buf, size);
+          WriteData(Info, buf, size);
         finally
           FreeMem(buf, x * y * (1 +(iUpTo-iFrom)) );
         end;
@@ -416,7 +416,7 @@ var i,j,size : integer;
         (* process per tile *)
 
         (* Main label *)
-        WriteLabel(Lbl, 'Start of tile array.', True);
+        WriteLabel(Info, Lbl, 'Start of tile array.', True);
 
         GetMem(buf, x * y );
         try
@@ -428,11 +428,11 @@ var i,j,size : integer;
               size := size + GetData(Info, TileType(LstInt.Items[(i*TileCnt)+j]^), Addr(buf[Size]) );
 
             (* write tile *)
-            Writelabel( Lbl + 'TLE' + IntToStr(i), '', False );
+            Writelabel(Info, Lbl + 'TLE' + IntToStr(i), '', False );
             PutCounter(Info, x, y, size, 1, Lbl + 'TLE' + IntToStr(i),Counter );
 
             Size := ProcessData( Info, buf, Size );
-            WriteData(buf, size);
+            WriteData(Info, buf, size);
           end;
 
         finally
@@ -457,7 +457,7 @@ begin
     begin
 
       (* Bank constant *)
-      WriteConstant( String(LabelName) + 'Bank', IntToStr(Bank), 'Bank of tiles.');
+      WriteConstant(Info, String(LabelName) + 'Bank', IntToStr(Bank), 'Bank of tiles.');
 
 
       if Info.IncludeColors then
@@ -466,10 +466,10 @@ begin
         (* SGB Color palettes *)
         for i := 0 to 3 do
         begin
-          WriteConstant( LabelName + SysUtils.Format('SGBPal%dc%d', [i,0]),
+          WriteConstant( Info, LabelName + SysUtils.Format('SGBPal%dc%d', [i,0]),
                          IntToStr(TColorToPal(SGB[i,0])), 'Super Gameboy palette ' + IntToStr(i));
           for j := 1 to 3 do
-            WriteConstant( LabelName + SysUtils.Format('SGBPal%dc%d', [i,j]),
+            WriteConstant( Info, LabelName + SysUtils.Format('SGBPal%dc%d', [i,j]),
                            IntToStr(TColorToPal(SGB[i,j])), '')
         end;
 
@@ -478,10 +478,10 @@ begin
         begin
           for i := 0 to 7 do
           begin
-            WriteConstant( LabelName + SysUtils.Format('CGBPal%dc%d', [i,0]),
+            WriteConstant( Info, LabelName + SysUtils.Format('CGBPal%dc%d', [i,0]),
                            IntToStr(TColorToPal(CGB[i,0])), 'Gameboy Color palette ' + IntToStr(i));
             for j := 1 to 3 do
-              WriteConstant( LabelName + SysUtils.Format('CGBPal%dc%d', [i,j]),
+              WriteConstant( Info, LabelName + SysUtils.Format('CGBPal%dc%d', [i,j]),
                              IntToStr(TColorToPal(CGB[i,j])), '')
           end;
         end;
@@ -511,7 +511,7 @@ begin
       if ( Split ) then
       begin
         iActualUpto := iUpto;
-        WriteLabel(String(LabelName), 'Main block label.', True );
+        WriteLabel(Info, String(LabelName), 'Main block label.', True );
         for i:= 0 to ((iUpto-iFrom) div BlockSize)-1 do
         begin
           iUpto := (iFrom + BlockSize)-1;
@@ -552,7 +552,7 @@ begin
       end;
 
       (* write counter *)
-      WriteCounter(i, CounterType(Cnter), lbl);
+      WriteCounter(Info, i, CounterType(Cnter), lbl);
     end;
 end;
 
@@ -679,37 +679,37 @@ end;
 
 
 
-procedure TGBTDExport.WriteHeader( const Info : TGBOTileExport; x,y : integer );
+procedure TGBTDExport.WriteHeader(const Info : TGBOTileExport; x,y : integer );
 begin
   (* use this to write the info.record to the source *)
 end;
 
-procedure TGBTDExport.WriteInit( const Info : TGBOTileExport );
+procedure TGBTDExport.WriteInit(const Info : TGBOTileExport );
 begin
   (* use this to start the source (setting the section, opening brackets, etc) *)
 end;
 
-procedure TGBTDExport.WriteLabel( lbl : string; comment : string; MainLabel : boolean );
+procedure TGBTDExport.WriteLabel(const Info : TGBOTileExport; const lbl : string; const comment : string; MainLabel : boolean );
 begin
   (* this writes a label *)
 end;
 
-procedure TGBTDExport.WriteConstant( lbl : string; Value : string; comment : string );
+procedure TGBTDExport.WriteConstant(const Info : TGBOTileExport; const lbl : string; const Value : string; const comment : string );
 begin
   (* this writes a constant *)
 end;
 
-procedure TGBTDExport.WriteCounter( cnt : integer; CType : TGBCounterType; lbl : string );
+procedure TGBTDExport.WriteCounter(const Info : TGBOTileExport; cnt : integer; CType : TGBCounterType; const lbl : string );
 begin
   (* this writes a counter byte/word of size cnt *)
 end;
 
-procedure TGBTDExport.WriteData( buf : TPByteArray; size : integer);
+procedure TGBTDExport.WriteData(const Info : TGBOTileExport; buf : TPByteArray; size : integer);
 begin
   (* this writes size bytes from buf to the output *)
 end;
 
-procedure TGBTDExport.WriteEnd( const Info : TGBOTileExport );
+procedure TGBTDExport.WriteEnd(const Info : TGBOTileExport);
 begin
   (* use this as opposite of WriteInit *)
 end;

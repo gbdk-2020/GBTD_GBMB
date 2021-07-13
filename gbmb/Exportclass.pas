@@ -1105,22 +1105,19 @@ begin
   else
     s := Trim(Options.Labelname) + 'BLK' + IntToStr(Block);
 
-  if (i = 0) then
-  begin
+  if (i = 0) then begin
     writeln(F);
-    if (Options.PlaneOrder = 0) then
-    begin
+    if (Options.PlaneOrder = 0) then begin
+      if (Options.Bank <> 0) then writeln(F, format('const void __at(%d) __bank_%s;', [Options.Bank, s]));
       writeln(F, 'const unsigned char ' + s + '[] =');
-    end
-    else
-    begin
+    end else begin
       writeln(F, '#define ' + s + ' ' + s + 'PLN0' );
+      if (Options.Bank <> 0) then writeln(F, format('const void __at(%d) __bank_%sPLN0;', [Options.Bank, s]));
       writeln(F, 'const unsigned char ' + s + 'PLN0[] =');
     end
-  end
-  else
-  begin
+  end else begin
     WriteBlockEnd;
+    if (Options.Bank <> 0) then writeln(F, format('const void __at(%d) __bank_%sPLN0%d;', [Options.Bank, s, i]));
     writeln(F, 'const unsigned char ' + s + 'PLN' + IntToStr(i) + '[] =');
   end;
   writeln(F, '{');
@@ -1219,20 +1216,17 @@ begin
   else
     s := Trim(Options.Labelname) + 'BLK' + IntToStr(Block);
 
-  if (i = 0) then
-  begin
-    if (Options.PlaneOrder = 0) then
-    begin
+  if (i = 0) then begin
+    if (Options.PlaneOrder = 0) then begin
+      if (Options.Bank <> 0) then writeln(F, format('extern const void __bank_%s;', [s]));
       writeln(F, 'extern const unsigned char ' + s + '[];');
-    end
-    else
-    begin
+    end else begin
       writeln(F, '#define ' + s + ' ' + s + 'PLN0' );
+      if (Options.Bank <> 0) then writeln(F, format('extern const void __bank_%sPLN0;', [s]));
       writeln(F, 'extern const unsigned char ' + s + 'PLN0[];');
     end
-  end
-  else
-  begin
+  end else begin
+    if (Options.Bank <> 0) then writeln(F, format('extern const void __bank_%sPLN0%d;', [s, i]));
     writeln(F, 'extern const unsigned char ' + s + 'PLN' + IntToStr(i) + '[];');
   end;
 end;
